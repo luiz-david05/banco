@@ -19,6 +19,7 @@ npm install readline-sync (biblioteca para leitura de dados do teclado)
 <br>
 npm install @types/readline-sync (instalação de tipos para o readline-sync)
 <br>
+<br>
 
 Execute o projeto:
 Navegue até a pasta do projeto (dist) e execute o comando:
