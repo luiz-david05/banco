@@ -1,0 +1,14 @@
+{
+  "name": "banco",
+  "version": "1.0.0",
+  "description": "atividade 8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "luiz-david05",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
