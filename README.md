@@ -6,8 +6,8 @@ Clone o repositório: git clone https://github.com/luiz-david05/banco
 # 🛠️ Abrir e rodar o projeto
 
 Na pasta do projeto (banco):
-
-
+<br>
+obs: instale o node em: https://nodejs.org/en/download/
 <br>
 Instale as dependências:
 <br>
