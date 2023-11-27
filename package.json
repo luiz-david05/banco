@@ -2,7 +2,8 @@
   "name": "banco",
   "version": "1.0.0",
   "description": "atividade 8",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,5 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/readline-sync": "^1.4.8"
   }
 }

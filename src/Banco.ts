@@ -125,26 +125,25 @@ class Banco {
     }
 
     arquivoToString(conta: Conta) {
-        let tipo = "C";
-        if (conta instanceof Poupanca) {
-            tipo = "P";
-        } else if (conta instanceof ContaImposto) {
-            tipo = "CI";
-        }
-
+        let tipo = this.obterTipoConta(conta);
         let contaString = `${tipo};${conta.numero};${conta.nome};${conta.saldo}`;
-        if (tipo == "P") {
-            contaString += `;${(conta as Poupanca).taxaJuros}`;
-        } else if (tipo == "CI") {
-            contaString += `;${(conta as ContaImposto).taxaDesconto}`;
+    
+        if (conta instanceof Poupanca) {
+            contaString += `;${conta.taxaJuros}`;
+        } else if (conta instanceof ContaImposto) {
+            contaString += `;${conta.taxaDesconto}`;
         }
-
+    
         return contaString;
     }
-
-    exibirContasExistentes() {
-        for (let conta of this._contas) {
-            console.log(this.toString(conta));
+    
+    private obterTipoConta(conta: Conta): string {
+        if (conta instanceof Poupanca) {
+            return "P";
+        } else if (conta instanceof ContaImposto) {
+            return "CI";
+        } else {
+            return "C";
         }
     }
 
