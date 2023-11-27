@@ -74,7 +74,7 @@ class Banco {
     }
 
     sacar(numero: string, valor: number) {
-        let conta: Conta = this.consultarConta(numero);
+        const conta: Conta = this.consultarConta(numero);
 
         if (conta instanceof ContaImposto) {
             conta.sacar(valor)

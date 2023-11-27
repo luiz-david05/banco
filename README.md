@@ -9,7 +9,7 @@ Na pasta do projeto (banco):
 
 
 <br>
-1. Instale as dependências:
+Instale as dependências:
 <br>
 npm install -g typescript (caso não tenha o typescript instalado)
 <br>

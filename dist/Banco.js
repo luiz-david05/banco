@@ -58,7 +58,7 @@ class Banco {
         this._contas.splice(indice, 1);
     }
     sacar(numero, valor) {
-        let conta = this.consultarConta(numero);
+        const conta = this.consultarConta(numero);
         if (conta instanceof ContaImposto) {
             conta.sacar(valor);
         }
