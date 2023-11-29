@@ -220,7 +220,7 @@ class App {
             catch (e) {
                 console.log(`\nNão foi possível concluir a operação!\n${e.message}`);
                 if (!(e instanceof AplicacaoError)) {
-                    console.log("Ops, este erro não foi reconhecido..., contate o administrador.");
+                    console.log(e.message, "Ops, este erro não foi reconhecido..., contate o administrador.");
                 }
             }
         } while (opcao != 0);

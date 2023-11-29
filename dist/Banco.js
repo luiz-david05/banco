@@ -9,17 +9,6 @@ class Banco {
     get contas() {
         return this._contas;
     }
-    get total() {
-        let totalDepositado = 0;
-        this._contas.forEach((conta) => (totalDepositado += conta.saldo));
-        return totalDepositado;
-    }
-    get totalContas() {
-        return this._contas.length;
-    }
-    get mediaDepositada() {
-        return this.total / this.totalContas;
-    }
     consultarContaPorIndice(numero) {
         let qtdContas = this._contas.length;
         for (let i = 0; i < qtdContas; i++) {
@@ -42,7 +31,7 @@ class Banco {
         }
         catch (e) {
             if (e instanceof ContaJaExisteError) {
-                throw new ContaJaExisteError('Já existe uma conta com este CPF.');
+                throw new ContaJaExisteError("Já existe uma conta com este CPF.");
             }
             else {
                 this._contas.push(conta);
@@ -96,17 +85,6 @@ class Banco {
         }
         return message;
     }
-    arquivoToString(conta) {
-        let tipo = this.obterTipoConta(conta);
-        let contaString = `${tipo};${conta.numero};${conta.nome};${conta.saldo}`;
-        if (conta instanceof Poupanca) {
-            contaString += `;${conta.taxaJuros}`;
-        }
-        else if (conta instanceof ContaImposto) {
-            contaString += `;${conta.taxaDesconto}`;
-        }
-        return contaString;
-    }
     obterTipoConta(conta) {
         if (conta instanceof Poupanca) {
             return "P";
@@ -117,6 +95,17 @@ class Banco {
         else {
             return "C";
         }
+    }
+    arquivoToString(conta) {
+        let tipo = this.obterTipoConta(conta);
+        let contaString = `${tipo};${conta.numero};${conta.nome};${conta.saldo}`;
+        if (conta instanceof Poupanca) {
+            contaString += `;${conta.taxaJuros}`;
+        }
+        else if (conta instanceof ContaImposto) {
+            contaString += `;${conta.taxaDesconto}`;
+        }
+        return contaString;
     }
     consultarHistorico(numero) {
         let indice = this.consultarContaPorIndice(numero);

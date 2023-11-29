@@ -293,7 +293,7 @@ class App {
                     `\nNão foi possível concluir a operação!\n${e.message}`
                 );
                 if (!(e instanceof AplicacaoError)) {
-                    console.log(
+                    console.log(e.message, 
                         "Ops, este erro não foi reconhecido..., contate o administrador."
                     );
                 }

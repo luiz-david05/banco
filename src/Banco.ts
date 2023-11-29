@@ -12,23 +12,7 @@ class Banco {
         return this._contas;
     }
 
-    get total(): number {
-        let totalDepositado = 0;
-        this._contas.forEach((conta) => (totalDepositado += conta.saldo));
-
-        return totalDepositado;
-    }
-
-    get totalContas(): number {
-        return this._contas.length;
-    }
-
-    get mediaDepositada(): number {
-        return this.total / this.totalContas;
-    }
-
     private consultarContaPorIndice(numero: string): number {
-
         let qtdContas = this._contas.length;
 
         for (let i = 0; i < qtdContas; i++) {
@@ -37,28 +21,29 @@ class Banco {
             }
         }
 
-        throw new ContaInexistenteError("A conta não existe.")
+        throw new ContaInexistenteError("A conta não existe.");
     }
 
     consultarConta(numero: string): Conta {
-        let contaProcurada: Conta
+        let contaProcurada: Conta;
 
-        const indice = this.consultarContaPorIndice(numero)
-        contaProcurada = this._contas[indice]
+        const indice = this.consultarContaPorIndice(numero);
+        contaProcurada = this._contas[indice];
 
-        return contaProcurada
+        return contaProcurada;
     }
 
     incluirConta(conta: Conta) {
         try {
-            this.consultarConta(conta.numero)
-            throw new ContaJaExisteError("Já existe uma conta com este CPF.")
-            
+            this.consultarConta(conta.numero);
+            throw new ContaJaExisteError("Já existe uma conta com este CPF.");
         } catch (e: any) {
             if (e instanceof ContaJaExisteError) {
-                throw new ContaJaExisteError('Já existe uma conta com este CPF.')
+                throw new ContaJaExisteError(
+                    "Já existe uma conta com este CPF."
+                );
             } else {
-                this._contas.push(conta)
+                this._contas.push(conta);
             }
         }
     }
@@ -77,38 +62,37 @@ class Banco {
         const conta: Conta = this.consultarConta(numero);
 
         if (conta instanceof ContaImposto) {
-            conta.sacar(valor)
+            conta.sacar(valor);
         }
 
         conta.sacar(valor);
     }
 
     depositar(numero: string, valor: number) {
-        const conta = this.consultarConta(numero)
+        const conta = this.consultarConta(numero);
 
         if (conta instanceof ContaImposto) {
-            conta.depositar(valor)
+            conta.depositar(valor);
         }
 
-        conta.depositar(valor)
+        conta.depositar(valor);
     }
 
     // questão 5
     transferir(numCred: string, numDeb: string, valor: number): void {
-        const contaDeb = this.consultarConta(numCred)
-        const contaCred = this.consultarConta(numDeb)
-        contaDeb.transferir(contaCred, valor)
+        const contaDeb = this.consultarConta(numCred);
+        const contaCred = this.consultarConta(numDeb);
+        contaDeb.transferir(contaCred, valor);
     }
 
     renderJuros(numero: string) {
-        const conta = this.consultarConta(numero)
+        const conta = this.consultarConta(numero);
 
         if (conta instanceof Poupanca) {
-            conta.renderJuros()
+            conta.renderJuros();
         } else {
-            throw new PoupancaInvalidaError("Esta conta não é uma poupança.")
+            throw new PoupancaInvalidaError("Esta conta não é uma poupança.");
         }
-
     }
 
     toString(conta: Conta): string {
@@ -124,19 +108,6 @@ class Banco {
         return message;
     }
 
-    arquivoToString(conta: Conta) {
-        let tipo = this.obterTipoConta(conta);
-        let contaString = `${tipo};${conta.numero};${conta.nome};${conta.saldo}`;
-    
-        if (conta instanceof Poupanca) {
-            contaString += `;${conta.taxaJuros}`;
-        } else if (conta instanceof ContaImposto) {
-            contaString += `;${conta.taxaDesconto}`;
-        }
-    
-        return contaString;
-    }
-    
     private obterTipoConta(conta: Conta): string {
         if (conta instanceof Poupanca) {
             return "P";
@@ -147,6 +118,19 @@ class Banco {
         }
     }
 
+    arquivoToString(conta: Conta) {
+        let tipo = this.obterTipoConta(conta);
+        let contaString = `${tipo};${conta.numero};${conta.nome};${conta.saldo}`;
+
+        if (conta instanceof Poupanca) {
+            contaString += `;${conta.taxaJuros}`;
+        } else if (conta instanceof ContaImposto) {
+            contaString += `;${conta.taxaDesconto}`;
+        }
+
+        return contaString;
+    }
+
     consultarHistorico(numero: string): string[] {
         let indice = this.consultarContaPorIndice(numero);
 
@@ -154,7 +138,7 @@ class Banco {
     }
 }
 
-export {Conta, ContaImposto, Poupanca, Banco}
+export { Conta, ContaImposto, Poupanca, Banco };
 
 // questão 5
 // let banco = new Banco();
@@ -166,7 +150,6 @@ export {Conta, ContaImposto, Poupanca, Banco}
 
 // banco.transferir("1111", "2222", 200);
 // aumentou a robustez do app, sem a necessidade de tantos if para a validação
-
 
 // questão 8
 // let banco = new Banco();
