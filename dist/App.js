@@ -87,6 +87,14 @@ class App {
             throw new InputInvalidoError("Valor inválido: o valor deve ser maior que zero.");
         }
     }
+    validaOpcao() {
+        let opcao = input("Tecle a opção correspondente: ").trim();
+        while (opcao === "" || isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 8) {
+            console.log("Opção inválida!");
+            opcao = input("Tecle a opção correspondente: ").trim();
+        }
+        return opcao;
+    }
     criarConta() {
         const nome = input("Nome do titular: ");
         this.validaNome(nome);
@@ -177,7 +185,7 @@ class App {
         do {
             input("\nTecle enter para continuar...");
             this.menu();
-            opcao = Number(input("Tecle a opcão correspondente: "));
+            opcao = Number(this.validaOpcao());
             try {
                 switch (opcao) {
                     case 0:

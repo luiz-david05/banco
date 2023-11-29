@@ -7,18 +7,11 @@ Clone o repositório: git clone https://github.com/luiz-david05/banco
 
 Na pasta do projeto (banco):
 <br>
-obs: instale o node em: https://nodejs.org/en/download/
+obs: instale o node em: https://nodejs.org/en/download/ (caso não tenha instalado)
 <br>
 Instale as dependências:
 <br>
-npm install -g typescript (caso não tenha o typescript instalado)
-<br>
-npm install --save-dev @types/node (instalação de tipos para o node)
-<br>
 npm install readline-sync (biblioteca para leitura de dados do teclado)
-<br>
-npm install @types/readline-sync (instalação de tipos para o readline-sync)
-<br>
 <br>
 
 Execute o projeto:
